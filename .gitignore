@@ -1,0 +1,4 @@
+
+*.xml
+app/config.py
+*.pdf

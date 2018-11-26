@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Skill Check</title>
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif; }
+        form {
+        border: 3px solid #f1f1f1;
+        border-radius: 12px;
+        width: 50%;
+        padding: 30px;
+        position:relative;
+        left:25%;
+        }
+        .mid{
+        position:relative;
+        left:42.5%;
+        }
+        button:hover {
+        opacity: 0.8;
+        }
+        input[type=text]{
+        width: 50%;
+        padding: 10px 10px;
+        margin: 8px 8px;
+        display: inline-block;
+        box-sizing: border-box;
+        background-color: #F5F5F5;
+        position:relative;
+        left:25%;
+        }
+        button{
+        background-color: #1E90FF;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        width: 15%;
+        font-weight: bold;
+        font-size: 25px
+        }
+        .container {
+        padding: 8px;
+        }
+        .buttonholder {
+        text-align: center;
+        width: 15%;
+        padding: 10px;
+        position:relative;
+        left:25%;
+
+        }
+        label {
+        display: block;
+        font-size: 20px;
+        position:relative;
+        left:25%;
+        }
+        @media screen and (max-width:600px) {
+
+        input[type=text]{
+        width: 100%;
+        padding: 12px 12px;
+        margin: 8px;
+        display: inline-block;
+        box-sizing: border-box;
+        }
+        }
+        </style>
+    </head>
+     <body>
+        <form method = 'POST' action="skill_match">
+          <h2 class = "mid">Skill Check</h2>
+          <div class = "container">
+            <label>Please enter desired skills and separate  by a ','</label>
+            <input type = 'text' name='desired'>
+            <button class = "buttonholder" type="submit">Submit</button>
+          </div>
+        </form>
+    </body>
+</html>

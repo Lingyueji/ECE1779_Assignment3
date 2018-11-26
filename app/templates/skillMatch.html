@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skill Match</title>
+    <Style>
+     body {font-family: Arial, Helvetica, sans-serif; }
+         button{
+        background-color: #1E90FF;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        width: 8%;
+        font-weight: bold;
+        font-size: 25px
+        }
+         button:hover {
+        opacity: 0.8;
+        }
+    </Style>
+</head>
+<body>
+
+    <form action='{{url_for("upload_and_skill_check")}}' method='POST'>
+        <button type='submit'>Back</button>
+    </form>
+    <div>
+        <ol>
+        {% for key, value in match.items() %}
+          <li>{{key}}&nbsp;:&nbsp; {{value}}</li>
+            {% endfor %}
+        </ol>
+
+    </div>
+</body>
+</html>
