@@ -2,3 +2,4 @@
 *.xml
 app/config.py
 *.pdf
+*.pyc
