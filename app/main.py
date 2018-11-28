@@ -1,9 +1,9 @@
-from flask import render_template, url_for, redirect, request, session
+
+from flask import render_template, url_for, redirect, request,session
 from app import webapp
 from app.jobDDB import query_jobs,query_skills
 from app.candidateDDB import query_candidate_of_position
 from app.createNewJob import createNJ
-
 
 
 webapp.secret_key = '\x80\xa9s*\x12\xc7x\xa9d\x1f(\x03\xbeHJ:\x9f\xf0!\xb1a\xaa\x0f\xee'
@@ -17,7 +17,9 @@ def logout():
     session.pop('uName', None)
     return render_template("login.html")
 
-@webapp.route('/dev4/login_submit',methods=['POST'])
+
+@webapp.route('/login_submit',methods=['POST'])
+
 def loginsubmit():
     if request.form['username'] != '' and request.form['password'] != '':
         uName = request.form['username']
@@ -30,6 +32,7 @@ def loginsubmit():
     return render_template("login.html",err='Please provide username and password!')
 
 @webapp.route('/main_page',methods=['POST'])
+
 def displayPosition():#TODO: pass the managerid to this function
     ManagerID = "43601e88-f2ab-11e8-ba53-f40f242190e7"
     list = query_jobs(ManagerID)
@@ -40,6 +43,7 @@ def displayPosition():#TODO: pass the managerid to this function
         jobTitle.append(row['jobTitle'])
         managerID.append(row['managerID'])
         positionID.append(row['positionID'])
+
     return render_template("/main.html", positions=jobTitle, mID=managerID, pID=positionID, uName = session['uName'])
 
 
