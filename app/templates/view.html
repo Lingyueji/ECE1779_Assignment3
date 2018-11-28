@@ -94,6 +94,11 @@
         <button type="submit">Back</button>
         </div>
       </form>
+     <form method = 'POST' action="{{url_for('logout')}}">
+        <div class="buttonholder">
+        <button type="submit">Logout</button>
+        </div>
+      </form>
       <div class = "list">
         {%for row in skill_freq%}
           {% set outer_loop = loop.index0 %}
