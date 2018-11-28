@@ -7,6 +7,11 @@ webapp.secret_key = '\x80\xa9s*\x12\xc7x\xa9d\x1f(\x03\xbeHJ:\x9f\xf0!\xb1a\xaa\
 def login():
     return render_template("login.html")
 
+@webapp.route('/logout',methods=['POST'])
+def logout():
+    session.pop('uName', None)
+    return render_template("login.html")
+
 @webapp.route('/login_submit',methods=['POST'])
 def loginsubmit():
     if request.form['username'] != '' and request.form['password'] != '':

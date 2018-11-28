@@ -79,6 +79,11 @@
 
      <h2 class="mid1">Resume Management</h2>
      <h3 class="mid1">Welcome {{uName}}!</h3>
+     <form method = 'POST' action="{{url_for('logout')}}">
+        <div class="buttonholder">
+        <button type="submit">Logout</button>
+        </div>
+      </form>
       <div class = "list">
         <table>
            {% for position in positions %}

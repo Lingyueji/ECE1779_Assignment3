@@ -87,6 +87,11 @@
         <button type='submit'>Back</button>
         </div>
     </form>
+        <form style = "border:None;" method = 'POST' action="{{url_for('logout')}}">
+        <div class="buttonholder">
+        <button type="submit">Logout</button>
+        </div>
+      </form>
     <form method = 'POST' action="{{url_for('upload_submit',mID = mID, pID = pID)}}" enctype="multipart/form-data">
       <div class = "buttonholder">
         <input type = "file" name= "resume" accept = ".pdf"/>
