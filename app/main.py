@@ -1,36 +1,41 @@
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request,session
 from app import webapp
 
+webapp.secret_key = '\x80\xa9s*\x12\xc7x\xa9d\x1f(\x03\xbeHJ:\x9f\xf0!\xb1a\xaa\x0f\xee'
 @webapp.route('/login',methods=['POST','GET'])
 @webapp.route('/',methods=['POST','GET'])
 def login():
     return render_template("login.html")
 
-@webapp.route('/main_page',methods=['POST'])
-def displayPosition():
+@webapp.route('/login_submit',methods=['POST'])
+def loginsubmit():
     if request.form['username'] != '' and request.form['password'] != '':
         uName = request.form['username']
         uPass = request.form['password']
         #Temporarily hard code.
         if uName == 'admin' and uPass == 'admin':
-            list = [{'jobTitle': 'C++ developer', 'positionID': 'jjjjjj',
-                     'managerID': '1082dd38-f284-11e8-8aeb-f40f242190e7'},
-                    {'jobTitle': 'math tutor', 'positionID': 'sadwaere',
-                     'managerID': '1082dd38-f284-11e8-8aeb-f40f242190e7'},
-                    {'jobTitle': 'junior java developer', 'positionID': 'sajijiwe',
-                     'managerID': '1082dd38-f284-11e8-8aeb-f40f242190e7'}]
-            jobTitle = []
-            managerID = []
-            positionID = []
-            for row in list:
-                jobTitle.append(row['jobTitle'])
-                managerID.append(row['managerID'])
-                positionID.append(row['positionID'])
-            return render_template("/main.html", positions=jobTitle, mID=managerID, pID=positionID, uName=uName)
-        else:
-            return  render_template("/login.html", err='Username and password are not match!')
-    else:
-        return  render_template("/login.html", err='Please provide valid username and password!')
+            session['uName'] = uName
+            return displayPosition()
+        return render_template("login.html", err='Username and password doesn not match!')
+    return render_template("login.html",err='Please provide username and password!')
+
+@webapp.route('/main_page',methods=['POST'])
+def displayPosition():
+    list = [{'jobTitle': 'C++ developer', 'positionID': 'jjjjjj',
+             'managerID': '1082dd38-f284-11e8-8aeb-f40f242190e7'},
+            {'jobTitle': 'math tutor', 'positionID': 'sadwaere',
+             'managerID': '1082dd38-f284-11e8-8aeb-f40f242190e7'},
+            {'jobTitle': 'junior java developer', 'positionID': 'sajijiwe',
+             'managerID': '1082dd38-f284-11e8-8aeb-f40f242190e7'}]
+    jobTitle = []
+    managerID = []
+    positionID = []
+    for row in list:
+        jobTitle.append(row['jobTitle'])
+        managerID.append(row['managerID'])
+        positionID.append(row['positionID'])
+    return render_template("/main.html", positions=jobTitle, mID=managerID, pID=positionID, uName=session['uName'])
+
 
 @webapp.route('/view/<mID>/<pID>', methods=['POST'])
 def view(mID, pID):
